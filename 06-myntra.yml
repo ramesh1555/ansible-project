@@ -1,0 +1,13 @@
+---
+- name: update web server
+  hosts: n2
+  become: true
+  tasks:
+  - name: ensure git installed
+    yum:
+      name: git
+      state: installed
+  - name: ensure file downloaded
+    git:
+      repo: https://github.com/ravi2krishna/ecomm.git
+      dest: /var/www/html/
