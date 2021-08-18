@@ -1,0 +1,24 @@
+---
+- name: update web servers
+  hosts: web
+  tasks:
+  - name: make sure web directory is created
+    file:
+      path: /home/centos/ram
+      state: directory
+  - name: ensure file is downloaded
+    get_url:
+      url: https://filesamples.com/samples/document/txt/sample3.txt
+      dest: /home/centos
+- name: update app servers
+  hosts: app
+  tasks:
+  - name: ensure app directory is created
+    file:
+      path: /home/centos/app
+      state: directory
+  - name: ensure file is downloaded
+    get_url:
+      url: https://filesamples.com/samples/document/txt/sample3.txt
+      dest: /home/centos
+...
