@@ -1,0 +1,17 @@
+---
+- name: update web server
+  hosts: n1
+  become: true
+  tasks:
+  - name: ensure git installed
+    yum:
+      name: git
+      state: installed
+  - name: deleting existing file 
+    file:
+      path: /var/www/html/
+      state: absent
+  - name: ensure file downloaded
+    git:
+      repo: https://github.com/ravi2krishna/food.git
+      dest: /var/www/html/
